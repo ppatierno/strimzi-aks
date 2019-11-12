@@ -16,7 +16,7 @@ The `az` tool provides a `aks` command for interacting with the AKS in order to 
 To create a new Kubernetes cluster, the `create` subcommand has different options but the main ones are the destination resource group, the name of the cluster and the related number of nodes.
 
 ```shell
-az aks create --resource-group strimzigroup --name strimzicluster --node-count 3 --generate-ssh-keys
+az aks create --resource-group strimzigroup --name strimzicluster --node-count 3 --generate-ssh-keys --kubernetes-version 1.15.5
 ```
 
 # Connect to the cluster
