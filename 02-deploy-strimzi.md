@@ -32,12 +32,13 @@ Install the operator by running the following command.
 kubectl create -f https://operatorhub.io/install/strimzi-kafka-operator.yaml
 ```
 
-Check the installation process of the latest Strimzi operator version (0.14.0).
+Follow the installation process of the latest Strimzi operator version (0.14.0).
 
 ```shell
-kubectl get csv -n operators
+kubectl get csv -n operators -w
 
 NAME                               DISPLAY                         VERSION   REPLACES                           PHASE
+strimzi-cluster-operator.v0.14.0   Strimzi Apache Kafka Operator   0.14.0    strimzi-cluster-operator.v0.13.0   Installing
 strimzi-cluster-operator.v0.14.0   Strimzi Apache Kafka Operator   0.14.0    strimzi-cluster-operator.v0.13.0   Succeeded
 ```
 
