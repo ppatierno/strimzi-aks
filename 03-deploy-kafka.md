@@ -5,29 +5,32 @@ An Apache Kafka cluster is described by a `Kafka` custom resource with the decla
 To deploy a Kafka cluster using the provided `Kafka` resource, just run:
 
 ```shell
-kubectl apply -f 03-deploy-kafka/
+kubectl apply -f 03-deploy-kafka
 ```
 
 The Cluster Operator takes care of this resource and starts to deploy all the stuff needed for having the Kafka cluster up and running.
 At the end of the process you can check the deployed pods (you can also follow the process in real time using the `-w` option).
 
 ```shell
-kubectl get pods -n default
+kubectl get pods -n strimzi-demo
 
 NAME                                          READY   STATUS    RESTARTS   AGE
-my-cluster-entity-operator-7494f55b87-8k824   3/3     Running   0          27s
-my-cluster-kafka-0                            2/2     Running   0          89s
-my-cluster-kafka-1                            2/2     Running   0          88s
-my-cluster-kafka-2                            2/2     Running   0          88s
-my-cluster-zookeeper-0                        2/2     Running   0          4m33s
-my-cluster-zookeeper-1                        2/2     Running   0          4m33s
-my-cluster-zookeeper-2                        2/2     Running   0          4m33s
+grafana-6547c6f94-5xc5l                       1/1     Running   0          10m
+my-cluster-entity-operator-54bf8f465b-tht2n   3/3     Running   0          3m23s
+my-cluster-kafka-0                            2/2     Running   0          4m27s
+my-cluster-kafka-1                            2/2     Running   0          4m27s
+my-cluster-kafka-2                            2/2     Running   0          4m27s
+my-cluster-kafka-exporter-875cb56df-6zr2t     1/1     Running   0          3m3s
+my-cluster-zookeeper-0                        2/2     Running   0          7m21s
+my-cluster-zookeeper-1                        2/2     Running   0          7m21s
+my-cluster-zookeeper-2                        2/2     Running   0          7m21s
+prometheus-849c765cfc-wdwc9                   1/1     Running   0          10m
 ```
 
 It is possible to check the PVC (Persistent Volume Claims) created for the related persistent storage.
 
 ```shell
-kubectl get pvc
+kubectl get pvc -n strimzi-demo
 
 NAME                          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 data-0-my-cluster-kafka-0     Bound    pvc-361d0eb8-0885-44ef-971e-41c2fadea007   100Gi      RWO            default        7m55s
@@ -45,18 +48,20 @@ They are bound to Azure Disks that are deployed for you in the same resource gro
 Finally, in order to access the Kafka brokers from outside the Kubernetes cluster, thanks to the external listener declaration using LoadBalancer, the following services are created by the operator.
 
 ```shell
-kubectl get service
+kubectl get service -n strimzi-demo
 
-NAME                                  TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)                      AGE
-kubernetes                            ClusterIP      10.0.0.1       <none>           443/TCP                      77m
-my-cluster-kafka-0                    LoadBalancer   10.0.39.16     52.142.86.213    9094:31766/TCP               9m49s
-my-cluster-kafka-1                    LoadBalancer   10.0.143.231   52.156.196.116   9094:32400/TCP               9m49s
-my-cluster-kafka-2                    LoadBalancer   10.0.253.89    52.155.235.46    9094:30692/TCP               9m49s
-my-cluster-kafka-bootstrap            ClusterIP      10.0.17.179    <none>           9091/TCP,9092/TCP,9093/TCP   9m50s
-my-cluster-kafka-brokers              ClusterIP      None           <none>           9091/TCP,9092/TCP,9093/TCP   9m50s
-my-cluster-kafka-external-bootstrap   LoadBalancer   10.0.125.10    52.155.233.252   9094:31666/TCP               9m49s
-my-cluster-zookeeper-client           ClusterIP      10.0.224.219   <none>           2181/TCP                     11m
-my-cluster-zookeeper-nodes            ClusterIP      None           <none>           2181/TCP,2888/TCP,3888/TCP   11m
+NAME                                  TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)                               AGE
+grafana                               LoadBalancer   10.0.128.110   52.155.88.253    80:30336/TCP                          9m43s
+my-cluster-kafka-0                    LoadBalancer   10.0.75.134    52.155.237.252   9094:32276/TCP                        4m42s
+my-cluster-kafka-1                    LoadBalancer   10.0.160.65    52.155.236.155   9094:31355/TCP                        4m42s
+my-cluster-kafka-2                    LoadBalancer   10.0.183.136   52.158.124.239   9094:30768/TCP                        4m42s
+my-cluster-kafka-bootstrap            ClusterIP      10.0.70.125    <none>           9091/TCP,9092/TCP,9093/TCP,9404/TCP   4m42s
+my-cluster-kafka-brokers              ClusterIP      None           <none>           9091/TCP,9092/TCP,9093/TCP            4m42s
+my-cluster-kafka-exporter             ClusterIP      10.0.174.167   <none>           9404/TCP                              2m13s
+my-cluster-kafka-external-bootstrap   LoadBalancer   10.0.75.194    52.155.93.2      9094:30566/TCP                        4m42s
+my-cluster-zookeeper-client           ClusterIP      10.0.94.120    <none>           9404/TCP,2181/TCP                     6m31s
+my-cluster-zookeeper-nodes            ClusterIP      None           <none>           2181/TCP,2888/TCP,3888/TCP            6m31s
+prometheus                            LoadBalancer   10.0.78.71     52.155.89.120    9090:32414/TCP                        9m45s
 ```
 
 Each Kafka broker has an external address provided via a LoadBalancer.
@@ -65,7 +70,7 @@ There is also a "bootstrap" service used for the first connection from clients.
 The Kafka cluster is now available as a Kubernetes native resource.
 
 ```shell
-kubectl get kafka
+kubectl get kafka -n strimzi-demo
 
 NAME         DESIRED KAFKA REPLICAS   DESIRED ZK REPLICAS
 my-cluster   3                        3
@@ -74,5 +79,5 @@ my-cluster   3                        3
 Finally, to delete the cluster, just delete the corresponding custom resource.
 
 ```shell
-kubectl delete kafka my-cluster
+kubectl delete kafka my-cluster -n strimzi-demo
 ```
