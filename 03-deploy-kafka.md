@@ -5,7 +5,7 @@ An Apache Kafka cluster is described by a `Kafka` custom resource with the decla
 To deploy a Kafka cluster using the provided `Kafka` resource, just run:
 
 ```shell
-kubectl apply -f resources/kafka.yaml
+kubectl apply -f 03-deploy-kafka/
 ```
 
 The Cluster Operator takes care of this resource and starts to deploy all the stuff needed for having the Kafka cluster up and running.
