@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-producer
+  namespace: strimzi-demo
+  labels:
+    app: hello-world-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-producer
+  template:
+    metadata:
+      labels:
+        app: hello-world-producer
+    spec:
+      containers:
+      - name: hello-world-producer
+        image: strimzi/hello-world-producer:latest
+        env:
+          - name: BOOTSTRAP_SERVERS
+            value: my-cluster-kafka-bootstrap:9092
+          - name: TOPIC
+            value: my-topic
+          - name: DELAY_MS
+            value: "500"
+          - name: LOG_LEVEL
+            value: "INFO"
+          - name: MESSAGE_COUNT
+            value: "10000000"
