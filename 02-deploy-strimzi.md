@@ -8,7 +8,7 @@ In order to install an operator in the Kubernetes cluster, the OLM (Operator Lif
 It's a tool to help manage the operators running on your cluster.
 
 ```shell
-curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/0.12.0/install.sh | bash -s 0.12.0
+curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/0.13.0/install.sh | bash -s 0.13.0
 ```
 
 The OLM component together with the operators catalog will run in the new `olm` namespace.
