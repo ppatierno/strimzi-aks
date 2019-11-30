@@ -1,3 +1,5 @@
+## Topic creation
+
 # KafkaTopic resource
 
 In order to create a topic through the Topic Operator.

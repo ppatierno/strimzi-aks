@@ -1,8 +1,10 @@
-# OperatorHub.io
+# Deploy Strimzi
+
+## OperatorHub.io
 
 The [OperatorHub.io](https://operatorhub.io/) website provides a bunch of operators for Kubernetes.
 
-# Install OLM (Operator Lifecycle Manager)
+## Install OLM (Operator Lifecycle Manager)
 
 In order to install an operator in the Kubernetes cluster, the OLM (Operator Lifecycle Manager) is needed.
 It's a tool to help manage the operators running on your cluster.
@@ -24,7 +26,7 @@ packageserver-58d86869bf-4tpp4      1/1     Running   0          2m22s
 packageserver-58d86869bf-8hhpf      1/1     Running   0          2m12s
 ```
 
-# Install the Strimzi operator
+## Install the Strimzi operator
 
 Install the operator by running the following command.
 

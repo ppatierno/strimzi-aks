@@ -1,4 +1,6 @@
-# Kafka resource
+# Deploy Apache Kafka
+
+## Kafka resource
 
 An Apache Kafka cluster is described by a `Kafka` custom resource with the declaration of Kafka brokers (replicas, configuration, listeners, storage, ...), ZooKeeper nodes, users and topics operators.
 
