@@ -5,7 +5,7 @@
 In order to create a topic through the Topic Operator.
 
 ```shell
-kubectl apply -f 04-topic
+kubectl apply -f 04-topic-creation
 ```
 
 You can check the topic was created by the Topic Operator in the Kafka cluster by running.
