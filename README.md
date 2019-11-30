@@ -1,6 +1,6 @@
 # Running Strimzi on AKS
 
-This demo is about deploying [Strimzi]() on Azure Kubernetes Service for deploying and handling an Apache Kafka cluster on top of it.
+This demo is about deploying [Strimzi](http://strimzi.io) on [Azure Kubernetes Service]((https://azure.microsoft.com/en-gb/services/kubernetes-service/) ) for deploying and handling an Apache Kafka cluster on top of it.
 
 ## Modules
 
