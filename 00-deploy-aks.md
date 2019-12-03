@@ -14,12 +14,14 @@ az group create --name strimzigroup --location northeurope
 
 ## Create a AKS cluster
 
-The `az` tool provides a `aks` command for interacting with the AKS in order to create and manage a Kubernetes cluster.
-To create a new Kubernetes cluster, the `create` subcommand has different options but the main ones are the destination resource group, the name of the cluster and the related number of nodes.
+The `az` tool provides a `aks` command for interacting with AKS in order to create and manage a Kubernetes cluster.
+To create a new Kubernetes cluster, the `create` subcommand has different options but the main ones are the destination resource group, the name of the cluster, the related number of nodes and the Kubernetes version to use.
 
 ```shell
 az aks create --resource-group strimzigroup --name strimzicluster --node-count 3 --generate-ssh-keys --kubernetes-version 1.15.5
 ```
+
+> It is possible to get the available Kubernetes versions in a specific location running the command `az aks get-versions --location northeurope --output table`
 
 ## Connect to the cluster
 
@@ -40,7 +42,7 @@ aks-nodepool1-24085136-vmss000002   Ready    agent   84s   v1.15.5
 
 ## Delete the cluster
 
-When the cluster is no longer needed, use the az group delete command to remove the resource group, container service, and all related resources.
+When the cluster is no longer needed, use the `az group delete` command to remove the resource group, container service, and all related resources.
 
 ```shell
 az group delete --name strimzigroup --yes --no-wait

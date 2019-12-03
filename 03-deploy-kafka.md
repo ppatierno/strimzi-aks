@@ -29,7 +29,7 @@ my-cluster-zookeeper-2                        2/2     Running   0          7m21s
 prometheus-849c765cfc-wdwc9                   1/1     Running   0          10m
 ```
 
-It is possible to check the PVC (Persistent Volume Claims) created for the related persistent storage.
+It is possible to check the PVCs (Persistent Volume Claims) created for the related persistent storage.
 
 ```shell
 kubectl get pvc -n strimzi-demo
@@ -45,9 +45,9 @@ data-my-cluster-zookeeper-2   Bound    pvc-6e6a7bac-9eec-4f8d-86e1-a5402c7952a0 
 
 They are bound to Azure Disks that are deployed for you in the same resource group.
 
-> For check the Azure Disks use the `az disk list` command
+> For check the Azure Disks use the `az disk list` command.
 
-Finally, in order to access the Kafka brokers from outside the Kubernetes cluster, thanks to the external listener declaration using LoadBalancer, the following services are created by the operator.
+Finally, in order to access the Kafka brokers from outside the Kubernetes cluster, thanks to the external listener declaration using `LoadBalancer` as a type, the following services are created by the operator.
 
 ```shell
 kubectl get service -n strimzi-demo
@@ -66,7 +66,7 @@ my-cluster-zookeeper-nodes            ClusterIP      None           <none>      
 prometheus                            LoadBalancer   10.0.78.71     52.155.89.120    9090:32414/TCP                        9m45s
 ```
 
-Each Kafka broker has an external address provided via a LoadBalancer.
+Each Kafka broker has an external address provided via a `LoadBalancer` service.
 There is also a "bootstrap" service used for the first connection from clients.
 
 The Kafka cluster is now available as a Kubernetes native resource.

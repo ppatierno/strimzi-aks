@@ -2,10 +2,19 @@
 
 # KafkaTopic resource
 
-In order to create a topic through the Topic Operator.
+In order to create a topic through the Topic Operator, the provided `KafkaTopic` custom resource can be deployed.
 
 ```shell
 kubectl apply -f 04-topic-creation
+```
+
+A Kafka topic is now available as a Kubernetes native resource.
+
+```shell
+kubectl get kafkatopic -n strimzi-demo
+
+NAME       PARTITIONS   REPLICATION FACTOR
+my-topic   3            3
 ```
 
 You can check the topic was created by the Topic Operator in the Kafka cluster by running.

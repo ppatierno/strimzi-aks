@@ -53,4 +53,5 @@ NAME                                                READY   STATUS    RESTARTS  
 strimzi-cluster-operator-v0.14.0-698459d6c5-sm4vr   1/1     Running   0          109s
 ```
 
-The operator brings all the CRDs (Custom Resource Definitions) which it's able to handle like `Kafka`, `KafkaConnect`, `KafkaMirrorMaker`, `KafkaBridge`, `KafkaTopic` and `KafkaUser`. It will watch for the related custom resource creation in all the namespace on the Kubernetes cluster.
+The operator brings all the CRDs (Custom Resource Definitions) which it's able to handle like `Kafka`, `KafkaConnect`, `KafkaMirrorMaker`, `KafkaBridge`, `KafkaTopic` and `KafkaUser`. 
+It will watch for the related custom resource creation in all the namespaces on the Kubernetes cluster.

@@ -3,7 +3,7 @@
 For consuming messages.
 
 ```shell
-./05-external-clients/02-consume-messages.sh 
+./06-external-clients/01-consume-messages.sh 
 Hello
 World
 ```
@@ -11,7 +11,7 @@ World
 For producing messages.
 
 ```shell
-./05-external-clients/01-produce-messages.sh 
+./06-external-clients/02-produce-messages.sh 
 >Hello
 >World
 ```
